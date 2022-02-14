@@ -3,6 +3,9 @@ package com.egen.weather1.controller;
 
 import com.egen.weather1.model.Weather;
 import com.egen.weather1.service.WeatherService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +23,10 @@ public class WeatherController {
     }
 
     @GetMapping(path = "/simple")
+    @ApiOperation(value = "My Simple Method")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "This is OK")
+    })
     public String mySimpleGetMethod(){
         return "My simple Method";
     }
