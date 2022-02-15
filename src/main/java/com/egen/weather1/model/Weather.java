@@ -2,8 +2,7 @@ package com.egen.weather1.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -18,7 +17,8 @@ public class Weather {
     private Double humidity;
     private Double pressure;
     private Double temperature;
-    //private Wind wind;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Wind wind;
     private Timestamp timestamp;
 
     public Weather(){

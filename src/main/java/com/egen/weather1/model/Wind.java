@@ -1,5 +1,7 @@
-/*package com.egen.weather1.model;
+package com.egen.weather1.model;
 
+
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,4 +20,3 @@ public class Wind {
         this.id= UUID.randomUUID().toString();
     }
 }
-*/
