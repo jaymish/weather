@@ -3,6 +3,7 @@ package com.egen.weather1.controller;
 
 import com.egen.weather1.model.Weather;
 import com.egen.weather1.service.WeatherService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -32,7 +33,7 @@ public class WeatherController {
     }
 
     @PostMapping("/addReading")
-    public boolean addWeatherReading(@RequestBody Weather weather){
+    public boolean addWeatherReading(@RequestBody Weather weather) throws JsonProcessingException {
         System.out.println(weather);
         weatherService.addWeatherReadings(weather);
         return true;
