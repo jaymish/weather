@@ -35,7 +35,7 @@ public class DefaultWeatherService implements WeatherService {
     public boolean addWeatherReadings(Weather weather) throws JsonProcessingException {
         //list.add(weather);
         weatherRepository.save(weather);
-        if(weather.getTemperature()>25){
+        /*if(weather.getTemperature()>25){
             WeatherAlert weatherAlert=new WeatherAlert("Too Hot", weather);
             String message = objectMapper.writeValueAsString(weatherAlert);
             weatherAlertSns.send("Temperature Alert", message);
@@ -46,7 +46,7 @@ public class DefaultWeatherService implements WeatherService {
             String message = objectMapper.writeValueAsString(weatherAlert);
             weatherAlertSns.send("Wind Alert", message);
 //            return restTemplate.postForObject("http://localhost:8081/addReading",weatherAlert,boolean.class);
-        }
+        }*/
         return true;
     }
 
