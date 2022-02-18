@@ -12,8 +12,8 @@ services:
       - db
     environment:
       - SPRING_DATABASE_URL=jdbc:postgresql://db:5432/weather
-        SPRING_DATABASE_USERNAME=postgres
-        SPRING_DATABASE_PASSWORD=123456
+      - SPRING_DATABASE_USERNAME=postgres
+      - SPRING_DATABASE_PASSWORD=123456
 
   db:
     image: 'postgres:13.1-alpine'
