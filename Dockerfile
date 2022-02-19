@@ -1,5 +1,6 @@
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 EXPOSE 8080
-ADD build/libs/weather1-0.0.1-SNAPSHOT.jar weather.jar
+RUN ./gradlew clean build
+RUN mv build/libs/demo-1.0.0.jar app.jar
 ENTRYPOINT ["java","-jar","/weather.jar"]
