@@ -3,6 +3,7 @@ package com.egen.weather1.controller;
 
 import com.egen.weather1.model.Weather;
 import com.egen.weather1.service.WeatherService;
+import com.egen.weather1.service.kafka.ProducerService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -17,10 +18,14 @@ import java.util.List;
 public class WeatherController {
 
     private WeatherService weatherService;
+    private ProducerService producerService;
+
+
 
     @Autowired
-    public WeatherController(WeatherService weatherService){
+    public WeatherController(WeatherService weatherService, ProducerService producerService){
         this.weatherService=weatherService;
+        this.producerService=producerService;
     }
 
     @GetMapping(path = "/simple")
@@ -48,4 +53,11 @@ public class WeatherController {
         System.out.println(weather);
         return true;
     }*/
+
+    @PostMapping("/publish")
+    public String sendMessageToKafkaTopic(@RequestParam String message){
+        producerService.sendMessage(message);
+        return "Message Received";
+    }
+
 }

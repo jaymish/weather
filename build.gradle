@@ -27,6 +27,7 @@ dependencies {
     implementation group:'org.springframework.cloud', name:'spring-cloud-starter-aws', version: '2.2.6.RELEASE'
     implementation group:'org.springframework.cloud', name:'spring-cloud-starter-aws-jdbc', version: '2.2.6.RELEASE'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-aws-messaging', version: '2.2.6.RELEASE'
+    implementation 'org.springframework.kafka:spring-kafka'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'mysql:mysql-connector-java'
     runtimeOnly 'org.postgresql:postgresql'
