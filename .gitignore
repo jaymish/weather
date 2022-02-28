@@ -10,6 +10,7 @@ build/
 !SPRING_DATABASE_URL=jdbc:postgresql://localhost:5432/weather;SPRING_DATABASE_USERNAME=postgres;SPRING_DATABASE_PASSWORD=123456
 
 ### STS ###
+docker-compose.yml
 .apt_generated
 .classpath
 .factorypath

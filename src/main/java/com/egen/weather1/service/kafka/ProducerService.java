@@ -1,10 +1,9 @@
 package com.egen.weather1.service.kafka;
 
-import com.google.common.util.concurrent.ListenableFuture;
+import com.egen.weather1.model.Weather;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -16,17 +15,17 @@ import java.util.Random;
 public class ProducerService {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
-    private final KafkaTemplate<String, String> customerKafkaTemplate;
+    private final KafkaTemplate<String, Weather> weatherKafkaTemplate;
 
     @Value("${kafka.topic.string-demo.name}")
     private String STRING_TOPIC;
 
-    @Value("${kafka.topic.string-demo.groupId}")
+    @Value("${kafka.topic.json-demo.name}")
     private String JSON_TOPIC;
 
-    public ProducerService(KafkaTemplate<String, String> kafkaTemplate, KafkaTemplate<String, String> customerKafkaTemplate) {
+    public ProducerService(KafkaTemplate<String, String> kafkaTemplate, KafkaTemplate<String, Weather> weatherKafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
-        this.customerKafkaTemplate = customerKafkaTemplate;
+        this.weatherKafkaTemplate = weatherKafkaTemplate;
     }
 
     public void sendMessage(String message){
@@ -35,6 +34,16 @@ public class ProducerService {
 
         kafkaTemplate.executeInTransaction(t -> {
              t.send(STRING_TOPIC, keyList.get(new Random().nextInt(keyList.size())), message);
+
+            return true;
+        });
+    }
+
+    public void sendMessageJson(Weather weather){
+        log.info(String.format("$$$$ => Consumed Message: %s", weather));
+
+        weatherKafkaTemplate.executeInTransaction(t -> {
+            t.send(JSON_TOPIC, weather.getId(), weather);
 
             return true;
         });

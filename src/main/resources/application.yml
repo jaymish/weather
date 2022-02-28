@@ -13,9 +13,20 @@ spring:
     active: local
   application:
     name: Notifications-application
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${GMAIL_USER}
+    password: ${GMAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
   kafka:
     producer:
-      bootstrap-servers: localhost:9892
+      bootstrap-servers: localhost:9092
       client-id: NotifierClient
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -27,10 +38,10 @@ spring:
       enable-Idempoyence: true
       transactionalId: NotificationTransId
     consumer:
-      bootstrap-servers: localhost:9892
+      bootstrap-servers: localhost:9092
       client-id: NotifierClient
-      key-deserializer: org.apache.kafka.common.serialization.StringSerializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       auto-offset-reset: earliest
       isolation-level: read_committed
       max-poll-records: 18

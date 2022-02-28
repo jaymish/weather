@@ -40,7 +40,8 @@ public class WeatherController {
     @PostMapping("/addReading")
     public boolean addWeatherReading(@RequestBody Weather weather) throws JsonProcessingException {
         System.out.println(weather);
-        weatherService.addWeatherReadings(weather);
+        //weatherService.addWeatherReadings(weather);
+        producerService.sendMessageJson(weather);
         return true;
     }
 
